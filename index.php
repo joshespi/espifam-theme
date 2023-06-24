@@ -9,9 +9,14 @@
 </head>
 
 <body>
-<header>
-    <h1>Espinoza Family</h1>
-    <nav></nav>
+        <nav id="main-menu">
+            <?php
+            wp_nav_menu(array(
+                'theme_location' => 'main-menu',
+                'menu_class' => 'menu',
+            ));
+            ?>
+        </nav>
 </header>
     <?php
     // The Query
