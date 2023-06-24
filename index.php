@@ -9,9 +9,9 @@
 </head>
 
 <body>
-    <header id="mainHeader">
+    <header>
         <p id="siteTitle"><?php bloginfo('name'); ?></p>
-        <nav id="main-menu">
+        <nav>
             <?php
             wp_nav_menu(array(
                 'theme_location' => 'main-menu',
@@ -20,7 +20,7 @@
             ?>
         </nav>
     </header>
-    <main id="mainContent">
+    <main>
         <h1>Keeping Up</h1>
         <section>
             <?php
