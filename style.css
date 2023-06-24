@@ -11,5 +11,14 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires PHP: 7.0
 Tested up to: 8.1
 */
+/* 
+--------------- Variables --------------- 
+*/
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --gray-background: #eee;
+  --theme-white: #fff;
+}
 
 
