@@ -9,6 +9,7 @@
 </head>
 
 <body>
+        <p id="siteTitle"><?php bloginfo('name'); ?></p>
         <nav id="main-menu">
             <?php
             wp_nav_menu(array(
