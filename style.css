@@ -33,5 +33,16 @@ h3 {font-size: 24px;}
 h4 {font-size: 20px;}
 h5 {font-size: 16px;}
 h6 {font-size: 14px;}
+header{
+    margin-bottom: 3em;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+nav ul li{
+    display: inline;
+}
 nav ul li.active:before {content: "< ";}
 nav ul li.active:after {content: " >";}
+#siteTitle {
+    font-size: 32px;
+}
