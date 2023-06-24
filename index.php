@@ -46,7 +46,7 @@
     // Restore original post data
     wp_reset_postdata();
     ?>
-
+    <?php wp_footer(); ?>
 </body>
 
 </html>
