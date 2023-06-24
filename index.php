@@ -22,13 +22,26 @@
     </header>
     <main>
         <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-            <article>
-                <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-                <div class="entry-content">
-                    <?php the_content(); ?>
-                </div>
-            </article>
-        <?php endwhile; else : ?>
+                <article>
+                    <?php if (is_singular(array('post', 'page'))) {
+                    ?>
+                        <h2><?php the_title(); ?></h2>
+                    <?php
+                    } else {
+                    ?>
+                        <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                    <?php
+                    }
+                    ?>
+
+                    <?php if (is_singular(array('post', 'page'))) : ?>
+                        <div class="entry-content">
+                            <?php the_content(); ?>
+                        </div>
+                    <?php endif; ?>
+                </article>
+            <?php endwhile;
+        else : ?>
             <p>No posts found.</p>
         <?php endif; ?>
     </main>
