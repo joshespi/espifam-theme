@@ -15,10 +15,12 @@ Tested up to: 8.1
 --------------- Variables --------------- 
 */
 :root {
-  --primary-color: #007bff;
-  --secondary-color: #6c757d;
+  --primary-blue: #154660;
+  --secondary-blue: #7AD5C9;
   --gray-background: #eee;
-  --theme-white: #fff;
+  --theme-white: #F1E3BA;
+  --theme-red: #941305;
+  --theme-black: #030303;
 }
 
 /* 
@@ -33,16 +35,34 @@ h3 {font-size: 24px;}
 h4 {font-size: 20px;}
 h5 {font-size: 16px;}
 h6 {font-size: 14px;}
+/* 
+--------------- Elements ---------------
+*/
+a {
+    text-decoration: none;
+    color:var(--primary-blue);
+}
+a:hover{color:var(--secondary-blue);}
+body {
+    background-color: var(--gray-background);
+    padding:1em;
+    color:var(--theme-black);
+}
 header{
     margin-bottom: 3em;
     display: grid;
     grid-template-columns: 1fr 1fr;
+}
+#siteTitle {
+    font-size: 32px;
 }
 nav ul li{
     display: inline;
 }
 nav ul li.active:before {content: "< ";}
 nav ul li.active:after {content: " >";}
-#siteTitle {
-    font-size: 32px;
+article{
+    border-top: 1px solid var(--primary-blue);
+    margin: 1em 1em 2em 1em;
+    padding-top: 1em
 }
