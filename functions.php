@@ -14,13 +14,13 @@ add_theme_support('post-thumbnails');
 // Let WordPress build our <title> tags
 add_theme_support('title-tag');
 
-
 // Register Main Menu
 function register_main_menu()
 {
     register_nav_menu('main-menu', 'Main Menu');
 }
 add_action('after_setup_theme', 'register_main_menu');
+
 // Add class "active" to menu item if currnetly on page
 function add_active_class($classes, $item)
 {

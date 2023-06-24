@@ -26,6 +26,7 @@
                     <?php if (is_singular(array('post', 'page'))) {
                     ?>
                         <h2><?php the_title(); ?></h2>
+
                     <?php
                     } else {
                     ?>
@@ -33,10 +34,13 @@
                     <?php
                     }
                     ?>
-
+                    <p class="publish-date"><?= get_the_date(); ?></p>
                     <?php if (is_singular(array('post', 'page'))) : ?>
                         <div class="entry-content">
-                            <?php the_content(); ?>
+                            <?php
+                            the_post_thumbnail();
+                            the_content();
+                            ?>
                         </div>
                     <?php endif; ?>
                 </article>
