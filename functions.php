@@ -21,3 +21,12 @@ function register_main_menu()
     register_nav_menu('main-menu', 'Main Menu');
 }
 add_action('after_setup_theme', 'register_main_menu');
+// Add class "active" to menu item if currnetly on page
+function add_active_class($classes, $item)
+{
+    if (in_array('current-menu-item', $classes)) {
+        $classes[] = 'active';
+    }
+    return $classes;
+}
+add_filter('nav_menu_css_class', 'add_active_class', 10, 2);

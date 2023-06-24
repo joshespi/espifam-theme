@@ -33,3 +33,5 @@ h3 {font-size: 24px;}
 h4 {font-size: 20px;}
 h5 {font-size: 16px;}
 h6 {font-size: 14px;}
+nav ul li.active:before {content: "< ";}
+nav ul li.active:after {content: " >";}
