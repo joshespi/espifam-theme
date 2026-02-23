@@ -16,3 +16,4 @@
             <p class="text-sm"><?php bloginfo('description'); ?></p>
         </div>
     </header>
+    <?php get_template_part('sidebar'); ?>
