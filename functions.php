@@ -53,3 +53,20 @@ add_theme_support('custom-logo', array(
     'flex-height' => true,
     'flex-width' => true,
 ));
+
+function espifam_customize_register($wp_customize)
+{
+    // Add a setting for the site background color
+    $wp_customize->add_setting('background_color', array(
+        'default' => '#ffffff',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ));
+
+    // Add a control for the background color
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'background_color', array(
+        'label' => __('Background Color', 'espifam-theme'),
+        'section' => 'colors',
+        'settings' => 'background_color',
+    )));
+}
+add_action('customize_register', 'espifam_customize_register');
