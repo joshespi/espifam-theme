@@ -56,17 +56,27 @@ add_theme_support('custom-logo', array(
 
 function espifam_customize_register($wp_customize)
 {
-    // Add a setting for the site background color
-    $wp_customize->add_setting('background_color', array(
-        'default' => '#ffffff',
-        'sanitize_callback' => 'sanitize_hex_color',
-    ));
+    // Add a section for the sidebar avatar
+    $wp_customize->add_section('espifam_sidebar_section', [
+        'title'    => __('Sidebar Avatar', 'espifam-theme'),
+        'priority' => 30,
+    ]);
 
-    // Add a control for the background color
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'background_color', array(
-        'label' => __('Background Color', 'espifam-theme'),
-        'section' => 'colors',
-        'settings' => 'background_color',
-    )));
+    // Add setting for the avatar image
+    $wp_customize->add_setting('espifam_sidebar_avatar', [
+        'default'   => '',
+        'transport' => 'refresh',
+    ]);
+
+    // Add image upload control
+    $wp_customize->add_control(new WP_Customize_Image_Control(
+        $wp_customize,
+        'espifam_sidebar_avatar',
+        [
+            'label'    => __('Sidebar Avatar Image', 'espifam-theme'),
+            'section'  => 'espifam_sidebar_section',
+            'settings' => 'espifam_sidebar_avatar',
+        ]
+    ));
 }
 add_action('customize_register', 'espifam_customize_register');
