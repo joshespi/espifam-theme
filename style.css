@@ -13,3 +13,129 @@ Tags: family, blog, clean, responsive
 @import "tailwindcss";
 
 /* Custom styles can be added below */
+/* Tailwind-style form fields */
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="number"],
+textarea,
+select {
+  @apply w-full px-4 py-2 rounded-lg border border-blue-200 bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition;
+  margin-bottom: 1rem;
+}
+
+button,
+input[type="submit"],
+input[type="button"] {
+  @apply bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg transition;
+  margin-top: 0.5rem;
+}
+
+label {
+  @apply block mb-2 font-medium text-gray-700;
+}
+
+/* Style lists in comments, widgets, etc. */
+ul,
+ol {
+  @apply list-disc list-inside mb-4;
+}
+
+/* Typography base styles for WordPress content */
+@layer base {
+  h1,
+  .wp-block-heading.is-style-default h1 {
+    @apply text-4xl font-extrabold mb-4 mt-8;
+  }
+  h2,
+  .wp-block-heading.is-style-default h2 {
+    @apply text-3xl font-bold mb-4 mt-8;
+  }
+  h3,
+  .wp-block-heading.is-style-default h3 {
+    @apply text-2xl font-bold mb-3 mt-6;
+  }
+  h4,
+  .wp-block-heading.is-style-default h4 {
+    @apply text-xl font-semibold mb-2 mt-4;
+  }
+  h5,
+  .wp-block-heading.is-style-default h5 {
+    @apply text-lg font-semibold mb-2 mt-4;
+  }
+  h6,
+  .wp-block-heading.is-style-default h6 {
+    @apply text-base font-semibold mb-2 mt-4;
+  }
+
+  p,
+  .wp-block-paragraph {
+    @apply mb-4 text-gray-800;
+  }
+  a {
+    @apply text-blue-600 underline hover:text-blue-800 transition;
+  }
+  ul,
+  ol {
+    @apply mb-4 pl-6;
+  }
+  ul {
+    @apply list-disc;
+  }
+  ol {
+    @apply list-decimal;
+  }
+  li {
+    @apply mb-2;
+  }
+  blockquote,
+  .wp-block-quote {
+    @apply border-l-4 border-blue-200 pl-4 italic text-gray-600 mb-6;
+  }
+  pre,
+  code,
+  .wp-block-code {
+    @apply bg-gray-100 rounded px-2 py-1 font-mono text-sm text-gray-700;
+  }
+  table,
+  .wp-block-table {
+    @apply w-full border-collapse mb-6;
+  }
+  th,
+  td {
+    @apply border border-blue-100 px-4 py-2;
+  }
+  th {
+    @apply bg-blue-50 font-bold;
+  }
+  img,
+  .wp-block-image img {
+    @apply rounded-lg shadow mb-4 max-w-full h-auto;
+  }
+  figure {
+    @apply mb-6;
+  }
+  figcaption {
+    @apply text-sm text-gray-500 mt-2 text-center;
+  }
+}
+
+/* Gutenberg block specific tweaks */
+.wp-block-separator {
+  @apply border-t-2 border-blue-200 my-8;
+}
+.wp-block-button__link {
+  @apply bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg transition;
+}
+.wp-block-pullquote {
+  @apply border-l-8 border-pink-200 pl-6 italic text-pink-700 bg-pink-50 rounded-lg mb-8;
+}
+.wp-block-gallery {
+  @apply grid grid-cols-2 md:grid-cols-3 gap-4 mb-6;
+}
+.wp-block-gallery img {
+  @apply rounded-lg shadow;
+}

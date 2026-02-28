@@ -26,7 +26,7 @@
             $escaped_avatar = esc_url($sidebar_avatar ?: get_template_directory_uri() . '/assets/family-avatar.png');
 
             ?>
-            <img src="<?= $escaped_avatar ?> ?>"
+            <img src="<?= $escaped_avatar ?>"
                 alt="Family Avatar"
                 class="w-20 h-20 rounded-full shadow mb-4 border-4 border-blue-200">
             <h2 class="text-2xl font-bold mb-2">Welcome!</h2>
