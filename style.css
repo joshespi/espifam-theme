@@ -136,11 +136,141 @@ ol {
 .wp-block-pullquote {
   @apply border-l-8 border-red-700 pl-6 italic text-zinc-300 bg-zinc-900 rounded-lg mb-8;
 }
-.wp-block-gallery {
-  @apply grid grid-cols-2 md:grid-cols-3 gap-4 mb-6;
+/* =============================================
+   GALLERY
+   ============================================= */
+
+/* Modern nested-image gallery (Gutenberg) */
+.wp-block-gallery.has-nested-images {
+  @apply flex flex-wrap gap-3 mb-8;
 }
-.wp-block-gallery img {
-  @apply rounded-lg shadow;
+.wp-block-gallery.has-nested-images figure.wp-block-image {
+  @apply flex-1 min-w-48 relative overflow-hidden rounded-xl m-0;
+}
+.wp-block-gallery.has-nested-images figure.wp-block-image img {
+  @apply w-full h-full object-cover rounded-xl shadow-lg transition-transform duration-300;
+  margin: 0;
+}
+.wp-block-gallery.has-nested-images figure.wp-block-image:hover img {
+  @apply scale-105;
+}
+
+/* Cropped (equal height) gallery */
+.wp-block-gallery.has-nested-images.is-cropped figure.wp-block-image {
+  height: 220px;
+}
+.wp-block-gallery.has-nested-images.is-cropped figure.wp-block-image img {
+  height: 100%;
+}
+
+/* Column count overrides */
+.wp-block-gallery.has-nested-images.columns-1 figure.wp-block-image { min-width: 100%; }
+.wp-block-gallery.has-nested-images.columns-2 figure.wp-block-image { min-width: calc(50% - 0.75rem); max-width: calc(50% - 0.75rem); }
+.wp-block-gallery.has-nested-images.columns-3 figure.wp-block-image { min-width: calc(33.33% - 0.75rem); max-width: calc(33.33% - 0.75rem); }
+.wp-block-gallery.has-nested-images.columns-4 figure.wp-block-image { min-width: calc(25% - 0.75rem); max-width: calc(25% - 0.75rem); }
+
+@media (max-width: 640px) {
+  .wp-block-gallery.has-nested-images figure.wp-block-image {
+    min-width: calc(50% - 0.75rem);
+    max-width: calc(50% - 0.75rem);
+  }
+  .wp-block-gallery.has-nested-images.columns-1 figure.wp-block-image {
+    min-width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* Gallery caption */
+.wp-block-gallery .wp-element-caption,
+.wp-block-gallery figcaption {
+  @apply text-xs text-zinc-400 text-center mt-2 italic;
+}
+
+/* Caption overlay on hover (for individual gallery items) */
+.wp-block-gallery.has-nested-images figure.wp-block-image .wp-element-caption {
+  @apply absolute bottom-0 left-0 right-0 bg-black/70 text-zinc-200 text-xs py-2 px-3 text-center
+         translate-y-full transition-transform duration-300 rounded-b-xl m-0 not-italic;
+}
+.wp-block-gallery.has-nested-images figure.wp-block-image:hover .wp-element-caption {
+  @apply translate-y-0;
+}
+
+/* Legacy shortcode gallery fallback */
+.gallery {
+  @apply grid gap-3 mb-8;
+}
+.gallery-columns-2 { grid-template-columns: repeat(2, 1fr); }
+.gallery-columns-3 { grid-template-columns: repeat(3, 1fr); }
+.gallery-columns-4 { grid-template-columns: repeat(4, 1fr); }
+.gallery-item {
+  @apply overflow-hidden rounded-xl;
+}
+.gallery-item img {
+  @apply w-full h-full object-cover rounded-xl shadow transition-transform duration-300;
+  margin: 0;
+}
+.gallery-item:hover img {
+  @apply scale-105;
+}
+.gallery-caption {
+  @apply text-xs text-zinc-400 text-center mt-1 italic;
+}
+
+/* =============================================
+   VIDEO
+   ============================================= */
+
+/* Native video upload block */
+.wp-block-video {
+  @apply mb-8;
+}
+.wp-block-video video {
+  @apply w-full rounded-xl shadow-lg border border-zinc-800 bg-black;
+  max-height: 600px;
+}
+
+/* Responsive embed wrapper (YouTube, Vimeo, etc.) */
+.wp-block-embed {
+  @apply mb-8;
+}
+.wp-has-aspect-ratio .wp-block-embed__wrapper {
+  position: relative;
+  width: 100%;
+}
+.wp-has-aspect-ratio .wp-block-embed__wrapper::before {
+  content: '';
+  display: block;
+}
+.wp-has-aspect-ratio .wp-block-embed__wrapper iframe,
+.wp-has-aspect-ratio .wp-block-embed__wrapper video,
+.wp-has-aspect-ratio .wp-block-embed__wrapper embed,
+.wp-has-aspect-ratio .wp-block-embed__wrapper object {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Aspect ratio padding values */
+.wp-embed-aspect-21-9 .wp-block-embed__wrapper::before { padding-top: 42.86%; }
+.wp-embed-aspect-18-9 .wp-block-embed__wrapper::before { padding-top: 50%; }
+.wp-embed-aspect-16-9 .wp-block-embed__wrapper::before { padding-top: 56.25%; }
+.wp-embed-aspect-4-3  .wp-block-embed__wrapper::before { padding-top: 75%; }
+.wp-embed-aspect-1-1  .wp-block-embed__wrapper::before { padding-top: 100%; }
+.wp-embed-aspect-9-16 .wp-block-embed__wrapper::before { padding-top: 177.78%; }
+.wp-embed-aspect-3-4  .wp-block-embed__wrapper::before { padding-top: 133.33%; }
+
+/* Embed container visual treatment */
+.wp-block-embed__wrapper {
+  @apply rounded-xl overflow-hidden shadow-lg border border-zinc-800 bg-black;
+}
+
+/* Embed caption */
+.wp-block-embed figcaption,
+.wp-block-embed .wp-element-caption {
+  @apply text-xs text-zinc-500 text-center mt-2 italic;
 }
 
 /* Nav menu links */
