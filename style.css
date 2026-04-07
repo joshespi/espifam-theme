@@ -195,22 +195,66 @@ ol {
   @apply translate-y-0;
 }
 
-/* Legacy shortcode gallery fallback */
+/* Legacy shortcode gallery ([gallery] shortcode)
+   WordPress injects inline float styles per-gallery by ID — we disable those
+   via add_filter('use_default_gallery_style', '__return_false') in functions.php */
 .gallery {
-  @apply grid gap-3 mb-8;
+  display: grid !important;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
 }
+.gallery-columns-1 { grid-template-columns: repeat(1, 1fr); }
 .gallery-columns-2 { grid-template-columns: repeat(2, 1fr); }
 .gallery-columns-3 { grid-template-columns: repeat(3, 1fr); }
 .gallery-columns-4 { grid-template-columns: repeat(4, 1fr); }
+.gallery-columns-5 { grid-template-columns: repeat(5, 1fr); }
+.gallery-columns-6 { grid-template-columns: repeat(6, 1fr); }
+.gallery-columns-7 { grid-template-columns: repeat(7, 1fr); }
+.gallery-columns-8 { grid-template-columns: repeat(8, 1fr); }
+.gallery-columns-9 { grid-template-columns: repeat(9, 1fr); }
+
+@media (max-width: 640px) {
+  .gallery-columns-4,
+  .gallery-columns-5,
+  .gallery-columns-6,
+  .gallery-columns-7,
+  .gallery-columns-8,
+  .gallery-columns-9 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .gallery-columns-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Hide the <br style="clear:both"> WordPress appends */
+.gallery br {
+  display: none;
+}
+
+/* dl/dt/dd structure the shortcode outputs */
 .gallery-item {
-  @apply overflow-hidden rounded-xl;
+  float: none !important;
+  width: auto !important;
+  margin: 0 !important;
+  overflow: hidden;
+  border-radius: 0.75rem;
+}
+.gallery-icon {
+  line-height: 0;
 }
 .gallery-item img {
-  @apply w-full h-full object-cover rounded-xl shadow transition-transform duration-300;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.4);
+  transition: transform 0.3s;
   margin: 0;
+  display: block;
 }
 .gallery-item:hover img {
-  @apply scale-105;
+  transform: scale(1.05);
 }
 .gallery-caption {
   @apply text-xs text-zinc-400 text-center mt-1 italic;

@@ -19,6 +19,9 @@ function espifam_theme_setup()
 
     // Required for YouTube/Vimeo embeds to be responsive
     add_theme_support('responsive-embeds');
+
+    // Remove WordPress's inline per-gallery <style> blocks so our CSS controls layout
+    add_filter('use_default_gallery_style', '__return_false');
 }
 add_action('after_setup_theme', 'espifam_theme_setup');
 
