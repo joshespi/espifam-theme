@@ -24,7 +24,7 @@
                 <div class="absolute bottom-0 left-0 right-0 p-8">
                     <div class="container mx-auto">
                         <h1 class="text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg"><?php the_title(); ?></h1>
-                        <p class="text-zinc-400 text-sm mt-2"><?php echo get_the_date(); ?> &middot; <?php the_author(); ?></p>
+                        <p class="text-zinc-400 text-sm mt-2"><?php echo get_the_date(); ?> &middot; <?php the_author(); ?> &middot; <?php echo espifam_reading_time(); ?></p>
                     </div>
                 </div>
             </div>
@@ -35,7 +35,7 @@
             <!-- Title when no featured image -->
             <?php if (!has_post_thumbnail()) : ?>
                 <h1 class="text-4xl font-extrabold text-white mb-2"><?php the_title(); ?></h1>
-                <p class="text-zinc-500 text-sm mb-6"><?php echo get_the_date(); ?> &middot; <?php the_author(); ?></p>
+                <p class="text-zinc-500 text-sm mb-6"><?php echo get_the_date(); ?> &middot; <?php the_author(); ?> &middot; <?php echo espifam_reading_time(); ?></p>
             <?php else : ?>
                 <p class="text-zinc-500 text-sm mb-6">&nbsp;</p>
             <?php endif; ?>
@@ -77,6 +77,52 @@
                     <?php the_content(); ?>
                 </div>
             </article>
+
+            <!-- Social Share -->
+            <?php
+            $share_url   = urlencode(get_permalink());
+            $share_title = urlencode(get_the_title());
+            ?>
+            <div class="mt-6 flex items-center gap-3 flex-wrap">
+                <span class="text-zinc-500 text-sm font-medium">Share:</span>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $share_url; ?>"
+                   target="_blank" rel="noopener noreferrer"
+                   class="bg-zinc-800 hover:bg-blue-700 text-zinc-300 hover:text-white text-xs font-semibold px-4 py-2 rounded-lg transition-colors no-underline">
+                    Facebook
+                </a>
+                <a href="https://x.com/intent/tweet?url=<?php echo $share_url; ?>&text=<?php echo $share_title; ?>"
+                   target="_blank" rel="noopener noreferrer"
+                   class="bg-zinc-800 hover:bg-zinc-600 text-zinc-300 hover:text-white text-xs font-semibold px-4 py-2 rounded-lg transition-colors no-underline">
+                    X / Twitter
+                </a>
+                <button onclick="navigator.clipboard.writeText('<?php echo esc_js(get_permalink()); ?>').then(() => this.textContent = 'Copied!')"
+                        class="bg-zinc-800 hover:bg-red-700 text-zinc-300 hover:text-white text-xs font-semibold px-4 py-2 rounded-lg transition-colors cursor-pointer border-0">
+                    Copy Link
+                </button>
+            </div>
+
+            <!-- Author Bio -->
+            <?php
+            $author_bio    = get_the_author_meta('description');
+            $author_name   = get_the_author();
+            $author_avatar = get_avatar(get_the_author_meta('ID'), 64, '', '', ['class' => 'rounded-full border-2 border-red-700 flex-shrink-0']);
+            if ($author_bio) : ?>
+                <div class="mt-8 bg-zinc-900 border border-zinc-800 rounded-xl p-6 flex gap-5 items-start">
+                    <?php echo $author_avatar; ?>
+                    <div>
+                        <p class="text-xs text-zinc-500 uppercase tracking-widest mb-1">Written by</p>
+                        <p class="font-bold text-white text-lg leading-tight mb-2"><?php echo esc_html($author_name); ?></p>
+                        <p class="text-zinc-400 text-sm leading-relaxed"><?php echo esc_html($author_bio); ?></p>
+                    </div>
+                </div>
+            <?php endif; ?>
+
+            <!-- Comments -->
+            <?php if (comments_open() || get_comments_number()) : ?>
+                <div class="mt-8">
+                    <?php comments_template(); ?>
+                </div>
+            <?php endif; ?>
 
             <!-- Related Posts -->
             <?php

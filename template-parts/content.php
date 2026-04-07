@@ -4,7 +4,7 @@
             <a href="<?php the_permalink(); ?>" class="text-white group-hover:text-red-400 transition-colors no-underline"><?php the_title(); ?></a>
         </h2>
         <div class="text-zinc-500 text-sm mb-3">
-            <?php echo get_the_date(); ?> &middot; <?php the_author(); ?>
+            <?php echo get_the_date(); ?> &middot; <?php the_author(); ?> &middot; <?php echo espifam_reading_time(); ?>
         </div>
         <?php
         $categories = get_the_category();

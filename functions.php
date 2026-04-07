@@ -80,3 +80,83 @@ function espifam_customize_register($wp_customize)
     ));
 }
 add_action('customize_register', 'espifam_customize_register');
+
+// Reading time estimate
+function espifam_reading_time($post_id = null) {
+    $content    = get_post_field('post_content', $post_id ?: get_the_ID());
+    $word_count = str_word_count(strip_tags($content));
+    $minutes    = max(1, (int) ceil($word_count / 200));
+    return $minutes . ' min read';
+}
+
+// Open Graph / Twitter Card meta tags
+function espifam_open_graph_tags() {
+    if (!is_singular()) return;
+
+    $title       = get_the_title();
+    $url         = get_permalink();
+    $description = has_excerpt()
+        ? wp_strip_all_tags(get_the_excerpt())
+        : wp_trim_words(wp_strip_all_tags(get_the_content()), 30, '...');
+    $site_name   = get_bloginfo('name');
+    $image       = '';
+
+    if (has_post_thumbnail()) {
+        $src   = wp_get_attachment_image_src(get_post_thumbnail_id(), 'large');
+        $image = $src ? $src[0] : '';
+    }
+
+    echo '<meta property="og:title" content="' . esc_attr($title) . '">' . "\n";
+    echo '<meta property="og:url" content="' . esc_url($url) . '">' . "\n";
+    echo '<meta property="og:type" content="article">' . "\n";
+    echo '<meta property="og:site_name" content="' . esc_attr($site_name) . '">' . "\n";
+    echo '<meta property="og:description" content="' . esc_attr($description) . '">' . "\n";
+    if ($image) {
+        echo '<meta property="og:image" content="' . esc_url($image) . '">' . "\n";
+    }
+    echo '<meta name="twitter:card" content="summary_large_image">' . "\n";
+    echo '<meta name="twitter:title" content="' . esc_attr($title) . '">' . "\n";
+    echo '<meta name="twitter:description" content="' . esc_attr($description) . '">' . "\n";
+    if ($image) {
+        echo '<meta name="twitter:image" content="' . esc_url($image) . '">' . "\n";
+    }
+}
+add_action('wp_head', 'espifam_open_graph_tags', 5);
+
+// Custom comment template
+function espifam_comment_template($comment, $args, $depth) {
+    $avatar = get_avatar($comment, 48, '', '', ['class' => 'rounded-full border-2 border-zinc-700 flex-shrink-0']);
+    $author = get_comment_author_link($comment);
+    $date   = get_comment_date('F j, Y', $comment);
+    $text   = get_comment_text($comment);
+    $edit   = get_edit_comment_link($comment);
+    ?>
+    <li id="comment-<?php comment_ID(); ?>" class="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+        <div class="flex gap-4">
+            <?php echo $avatar; ?>
+            <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-3 mb-2 flex-wrap">
+                    <span class="font-semibold text-white"><?php echo $author; ?></span>
+                    <span class="text-zinc-500 text-xs"><?php echo $date; ?></span>
+                    <?php if ($edit) : ?>
+                        <a href="<?php echo esc_url($edit); ?>" class="text-xs text-red-500 hover:text-red-400 no-underline">Edit</a>
+                    <?php endif; ?>
+                </div>
+                <?php if ($comment->comment_approved === '0') : ?>
+                    <p class="text-zinc-500 text-sm italic mb-2">Your comment is awaiting moderation.</p>
+                <?php endif; ?>
+                <div class="text-zinc-300 text-sm leading-relaxed"><?php echo $text; ?></div>
+                <div class="mt-2">
+                    <?php comment_reply_link(array_merge($args, [
+                        'reply_text' => 'Reply',
+                        'depth'      => $depth,
+                        'max_depth'  => $args['max_depth'],
+                        'before'     => '<span class="text-xs text-red-500 hover:text-red-400 cursor-pointer">',
+                        'after'      => '</span>',
+                    ])); ?>
+                </div>
+            </div>
+        </div>
+    </li>
+    <?php
+}

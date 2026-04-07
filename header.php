@@ -8,7 +8,8 @@
 </head>
 
 <body <?php body_class('bg-zinc-950 text-zinc-100'); ?>>
-    <header class="bg-black border-b border-red-900 text-white py-5 shadow-lg">
+    <div id="page-top"></div>
+    <header class="sticky top-0 z-40 bg-black border-b border-red-900 text-white py-5 shadow-lg backdrop-blur-sm">
         <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
             <div>
                 <h1 class="text-3xl font-extrabold tracking-tight">

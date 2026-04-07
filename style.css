@@ -147,3 +147,58 @@ ol {
 .primary-menu a {
   @apply text-zinc-300 hover:text-red-400 transition-colors no-underline;
 }
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Pagination */
+.nav-links {
+  @apply flex items-center gap-2 flex-wrap justify-center;
+}
+.page-numbers {
+  @apply inline-flex items-center justify-center min-w-[2.5rem] h-10 px-3 rounded-lg bg-zinc-800 text-zinc-300 no-underline hover:bg-red-700 hover:text-white transition-colors font-medium text-sm;
+}
+.page-numbers.current {
+  @apply bg-red-700 text-white;
+}
+.page-numbers.dots {
+  @apply bg-transparent text-zinc-600 hover:bg-transparent hover:text-zinc-600;
+}
+.nav-previous a,
+.nav-next a {
+  @apply inline-flex items-center justify-center h-10 px-4 rounded-lg bg-zinc-800 text-zinc-300 no-underline hover:bg-red-700 hover:text-white transition-colors font-medium text-sm;
+}
+
+/* Search form */
+.search-form {
+  @apply flex gap-2;
+}
+.search-field {
+  @apply flex-1 px-4 py-2 rounded-lg border border-zinc-700 bg-zinc-800 text-zinc-100 focus:outline-none focus:ring-2 focus:ring-red-600 transition text-sm;
+  margin-bottom: 0;
+}
+.search-submit {
+  @apply bg-red-700 hover:bg-red-600 text-white font-bold py-2 px-5 rounded-lg transition text-sm cursor-pointer;
+  margin-top: 0;
+}
+
+/* Comment list reset */
+.comment-list {
+  @apply list-none pl-0;
+}
+.comment-list .children {
+  @apply list-none pl-6 mt-4 space-y-4;
+}
+#respond h3 {
+  @apply text-xl font-bold mb-4;
+}
+.comment-form p {
+  @apply mb-0;
+}
+.comment-form input[type="text"],
+.comment-form input[type="email"],
+.comment-form input[type="url"] {
+  @apply w-full;
+}
