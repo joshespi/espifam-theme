@@ -23,19 +23,19 @@ input[type="tel"],
 input[type="number"],
 textarea,
 select {
-  @apply w-full px-4 py-2 rounded-lg border border-blue-200 bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition;
+  @apply w-full px-4 py-2 rounded-lg border border-zinc-700 bg-zinc-800 text-zinc-100 focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 transition;
   margin-bottom: 1rem;
 }
 
 button,
 input[type="submit"],
 input[type="button"] {
-  @apply bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg transition;
+  @apply bg-red-700 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-lg transition;
   margin-top: 0.5rem;
 }
 
 label {
-  @apply block mb-2 font-medium text-gray-700;
+  @apply block mb-2 font-medium text-zinc-300;
 }
 
 /* Style lists in comments, widgets, etc. */
@@ -46,37 +46,40 @@ ol {
 
 /* Typography base styles for WordPress content */
 @layer base {
+  body {
+    @apply bg-zinc-950 text-zinc-100;
+  }
   h1,
   .wp-block-heading.is-style-default h1 {
-    @apply text-4xl font-extrabold mb-4 mt-8;
+    @apply text-4xl font-extrabold mb-4 mt-8 text-white;
   }
   h2,
   .wp-block-heading.is-style-default h2 {
-    @apply text-3xl font-bold mb-4 mt-8;
+    @apply text-3xl font-bold mb-4 mt-8 text-white;
   }
   h3,
   .wp-block-heading.is-style-default h3 {
-    @apply text-2xl font-bold mb-3 mt-6;
+    @apply text-2xl font-bold mb-3 mt-6 text-white;
   }
   h4,
   .wp-block-heading.is-style-default h4 {
-    @apply text-xl font-semibold mb-2 mt-4;
+    @apply text-xl font-semibold mb-2 mt-4 text-white;
   }
   h5,
   .wp-block-heading.is-style-default h5 {
-    @apply text-lg font-semibold mb-2 mt-4;
+    @apply text-lg font-semibold mb-2 mt-4 text-white;
   }
   h6,
   .wp-block-heading.is-style-default h6 {
-    @apply text-base font-semibold mb-2 mt-4;
+    @apply text-base font-semibold mb-2 mt-4 text-white;
   }
 
   p,
   .wp-block-paragraph {
-    @apply mb-4 text-gray-800;
+    @apply mb-4 text-zinc-300;
   }
   a {
-    @apply text-blue-600 underline hover:text-blue-800 transition;
+    @apply text-red-400 underline hover:text-red-300 transition;
   }
   ul,
   ol {
@@ -93,12 +96,12 @@ ol {
   }
   blockquote,
   .wp-block-quote {
-    @apply border-l-4 border-blue-200 pl-4 italic text-gray-600 mb-6;
+    @apply border-l-4 border-red-700 pl-4 italic text-zinc-400 mb-6;
   }
   pre,
   code,
   .wp-block-code {
-    @apply bg-gray-100 rounded px-2 py-1 font-mono text-sm text-gray-700;
+    @apply bg-zinc-800 rounded px-2 py-1 font-mono text-sm text-red-300;
   }
   table,
   .wp-block-table {
@@ -106,10 +109,10 @@ ol {
   }
   th,
   td {
-    @apply border border-blue-100 px-4 py-2;
+    @apply border border-zinc-700 px-4 py-2;
   }
   th {
-    @apply bg-blue-50 font-bold;
+    @apply bg-zinc-800 font-bold text-white;
   }
   img,
   .wp-block-image img {
@@ -119,23 +122,28 @@ ol {
     @apply mb-6;
   }
   figcaption {
-    @apply text-sm text-gray-500 mt-2 text-center;
+    @apply text-sm text-zinc-500 mt-2 text-center;
   }
 }
 
 /* Gutenberg block specific tweaks */
 .wp-block-separator {
-  @apply border-t-2 border-blue-200 my-8;
+  @apply border-t-2 border-red-900 my-8;
 }
 .wp-block-button__link {
-  @apply bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg transition;
+  @apply bg-red-700 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-lg transition;
 }
 .wp-block-pullquote {
-  @apply border-l-8 border-pink-200 pl-6 italic text-pink-700 bg-pink-50 rounded-lg mb-8;
+  @apply border-l-8 border-red-700 pl-6 italic text-zinc-300 bg-zinc-900 rounded-lg mb-8;
 }
 .wp-block-gallery {
   @apply grid grid-cols-2 md:grid-cols-3 gap-4 mb-6;
 }
 .wp-block-gallery img {
   @apply rounded-lg shadow;
+}
+
+/* Nav menu links */
+.primary-menu a {
+  @apply text-zinc-300 hover:text-red-400 transition-colors no-underline;
 }

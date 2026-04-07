@@ -1,13 +1,12 @@
 <?php get_header(); ?>
 
-<main class="bg-gradient-to-b from-blue-50 via-white to-pink-50 min-h-screen py-10">
+<main class="bg-zinc-950 min-h-screen py-10">
     <div class="container mx-auto px-4">
         <?php
         if (have_posts()) :
             while (have_posts()) : the_post();
                 get_template_part('template-parts/content');
             endwhile;
-            // Pagination below the loop
             echo '<div class="mt-8 flex justify-center">';
             the_posts_pagination([
                 'mid_size'  => 2,
@@ -17,7 +16,7 @@
             ]);
             echo '</div>';
         else :
-            echo '<p class="text-center text-gray-600">No content found. Please check back later.</p>';
+            echo '<p class="text-center text-zinc-500">No content found. Please check back later.</p>';
         endif;
         ?>
     </div>
